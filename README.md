@@ -14,7 +14,7 @@ It allows you to display metadata-driven wallpapers (e.g., Movies, TV Shows) on 
 *   **Customizable Filters**:
     *   **Genre**: Filter content by genres (Action, Comedy, Drama, Sci-Fi, etc.), fetched dynamically from the server.
     *   **Age Rating**: Filter by age ratings (G, PG, R, FSK, etc.), fetched dynamically from the server.
-    *   **Sort Order**: Random, Newest (Year), or Best Rated.
+    *   **Year**: Filter content by release year or range (e.g., 2005-2010), fetched dynamically from the server.
     *   **Layout/Collection**: Dynamically selectable from the server.
 *   **Configurable Server**: Set your own backend URL directly from the settings interface.
 
@@ -30,7 +30,7 @@ It allows you to display metadata-driven wallpapers (e.g., Movies, TV Shows) on 
     *   Click on the **Settings** (gear icon) next to the plugin name.
     *   **Server URL**: Enter the URL of your **TV Background Suite** backend (e.g., `http://192.168.1.x:5000`).
     *   **Collection / Layout**: Select which library/layout to fetch wallpapers from.
-    *   **Filters**: Adjust Genre, Sort Order, and Age Rating as desired.
+    *   **Filters**: Adjust Genre, Age Rating and Year as desired.
 5.  **Enjoy**: Your background will now update based on your preferences.
 
 ## Backend Requirements
@@ -43,10 +43,11 @@ The backend provides the following REST API endpoints:
 *   `GET /api/layouts/list`: Returns a JSON list of available layouts/collections (List<String>).
 *   `GET /api/genres/list`: Returns a JSON list of available genres (List<String>).
 *   `GET /api/ages/list`: Returns a JSON list of available age ratings (List<String>).
+*   `GET /api/year/list`: Returns a JSON list of available years (List<String>).
 *   `GET /api/wallpaper/status`: Returns a JSON object with:
     *   `imageUrl` (String): URL of the wallpaper image.
     *   `actionUrl` (String): Deep link URL (e.g., `jellyfin://items/xyz`).
-    *   Query parameters supported: `layout`, `genre`, `sort`, `age`.
+    *   Query parameters supported: `layout`, `genre`, `age`, `year`.
 
 ## Development
 

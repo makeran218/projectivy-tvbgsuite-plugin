@@ -14,8 +14,10 @@ interface ApiService {
     fun getWallpaperStatus(
         @Query("layout") layout: String,
         @Query("genre") genre: String? = null,
-        @Query("sort") sort: String? = null,
-        @Query("age") age: String? = null
+        @Query("age") age: String? = null,
+        @Query("year") year: String? = null,
+        @Query("min_rating") minRating: Float? = null,
+        @Query("max_rating") maxRating: Float? = null
     ): Call<WallpaperStatus>
 
     @GET("/api/layouts/list")
@@ -26,4 +28,7 @@ interface ApiService {
 
     @GET("/api/ages/list")
     fun getAgeRatings(): Call<List<String>>
+
+    @GET("/api/year/list")
+    fun getYears(): Call<List<String>>
 }

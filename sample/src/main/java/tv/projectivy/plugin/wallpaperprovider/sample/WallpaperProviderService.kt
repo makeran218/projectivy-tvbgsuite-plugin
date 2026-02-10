@@ -41,8 +41,10 @@ class WallpaperProviderService: Service() {
                 val serverUrl = PreferencesManager.serverUrl
                 val selectedLayout = PreferencesManager.selectedLayout
                 val genreFilter = PreferencesManager.genreFilter.ifEmpty { null }
-                val sortOrder = PreferencesManager.sortOrder.lowercase().ifEmpty { null }
                 val ageFilter = PreferencesManager.ageFilter.ifEmpty { null }
+                val yearFilter = PreferencesManager.yearFilter.ifEmpty { null }
+                val minRating = PreferencesManager.minRating
+                val maxRating = PreferencesManager.maxRating
 
                 if (serverUrl.isBlank()) {
                     Log.w("WallpaperService", "Server URL is blank")
@@ -59,8 +61,10 @@ class WallpaperProviderService: Service() {
                     val response = apiService.getWallpaperStatus(
                         layout = selectedLayout,
                         genre = genreFilter,
-                        sort = sortOrder,
-                        age = ageFilter
+                        age = ageFilter,
+                        year = yearFilter,
+                        minRating = if (minRating > 0.0f) minRating else null,
+                        maxRating = if (maxRating < 10.0f) maxRating else null
                     ).execute()
 
                     if (response.isSuccessful) {
