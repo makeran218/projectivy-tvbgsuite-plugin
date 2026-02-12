@@ -80,7 +80,7 @@ object PreferencesManager {
         set(value) { PreferencesManager[IMAGE_URL_KEY]=value }
 
     var serverUrl: String
-        get() = PreferencesManager[SERVER_URL_KEY, "http://192.168.1.100:5000"]
+        get() = PreferencesManager[SERVER_URL_KEY, "http://192.168.2.50:5000"]
         set(value) { PreferencesManager[SERVER_URL_KEY] = value }
 
     var selectedLayout: String
@@ -94,7 +94,7 @@ object PreferencesManager {
     var ageFilter: String
         get() = PreferencesManager[AGE_FILTER_KEY, ""]
         set(value) { PreferencesManager[AGE_FILTER_KEY] = value }
-    
+
     var yearFilter: String
         get() = PreferencesManager[YEAR_FILTER_KEY, ""]
         set(value) { PreferencesManager[YEAR_FILTER_KEY] = value }
