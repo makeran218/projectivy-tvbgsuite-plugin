@@ -133,11 +133,9 @@ class WallpaperProviderService: Service() {
                             if (!action.isNullOrBlank() && action.startsWith("jellyfin://items/")) {
                                 val id = action.substringAfter("jellyfin://items/")
 
-                                if (isPackageInstalled("com.mb.android.tv")) {
+
                                     action = "emby://item?id=$id"
-                                } else {
-                                    action = null
-                                }
+
                             }
                             Log.e("WallpaperService", "PROJECTIVY_LOG: API Success: ${status.imageUrl}")
 
