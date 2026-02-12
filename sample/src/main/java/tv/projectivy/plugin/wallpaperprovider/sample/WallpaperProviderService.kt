@@ -132,10 +132,7 @@ class WallpaperProviderService: Service() {
 
                             if (!action.isNullOrBlank() && action.startsWith("jellyfin://items/")) {
                                 val id = action.substringAfter("jellyfin://items/")
-
-
-                                    action = "emby://item?id=$id"
-
+                                action = "emby://items/c9641db5775c42a2a0d02cf5fa1deacb/$id#Intent;scheme=emby;package=com.mb.android;end"
                             }
                             Log.e("WallpaperService", "PROJECTIVY_LOG: API Success: ${status.imageUrl}")
 
