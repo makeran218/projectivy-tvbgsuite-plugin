@@ -44,7 +44,7 @@ class WallpaperProviderService: Service() {
             Log.e("WallpaperService", "PROJECTIVY_LOG: getWallpapers | Event: ${event?.eventType} (${event?.javaClass?.simpleName}) ")
 
             var forceRefresh = false
-            
+
             if (event is Event.LauncherIdleModeChanged) {
                 Log.e("WallpaperService", "PROJECTIVY_LOG: AIDL Idle Changed | isIdle: ${event.isIdle}")
 
@@ -80,7 +80,7 @@ class WallpaperProviderService: Service() {
 
                 val genreFilterString = PreferencesManager.genreFilter.ifEmpty { null }
                 val ageFilterString = PreferencesManager.ageFilter.ifEmpty { null }
-                
+
                 val yearFilterString = PreferencesManager.yearFilter
                 var minYearParam: String? = null
                 var maxYearParam: String? = null
@@ -129,14 +129,18 @@ class WallpaperProviderService: Service() {
                         val status = response.body()
                         if (status != null) {
                             var action = status.actionUrl
+
                             if (!action.isNullOrBlank() && action.startsWith("jellyfin://items/")) {
                                 val id = action.substringAfter("jellyfin://items/")
-                                if (isPackageInstalled("org.moonfin.androidtv")) {
-                                    action = "intent:#Intent;component=org.moonfin.androidtv/org.jellyfin.androidtv.ui.startup.StartupActivity;action=android.intent.action.VIEW;S.ItemId=$id;S.id=$id;end"
+
+                                if (isPackageInstalled("com.mb.android.tv")) {
+                                    action = "emby://item?id=$id"
+                                } else {
+                                    action = null
                                 }
                             }
                             Log.e("WallpaperService", "PROJECTIVY_LOG: API Success: ${status.imageUrl}")
-                            
+
                             // Save last successfully loaded wallpaper
                             PreferencesManager.lastWallpaperUri = status.imageUrl
                             // Use selectedLayout as author, or a default if selectedLayout is blank
