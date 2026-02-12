@@ -132,12 +132,9 @@ class WallpaperProviderService: Service() {
 
                             if (!action.isNullOrBlank() && action.startsWith("jellyfin://items/")) {
                                 val id = action.substringAfter("jellyfin://items/")
-                               // Note: This often uses the item ID directly without the server ID in the path
-                                action = "intent:#Intent;" +
-                                "action=android.intent.action.VIEW;" +
-                                "package=tv.emby.embyatv;" +
-                                "S.ItemId=$id;" +   // Use ItemId for playback
-                                "end"
+                                val serverId = "c9641db5775c42a2a0d02cf5fa1deacb"
+                               action = "intent://items/$serverId/$id#Intent;scheme=emby;package=tv.emby.embyatv;component=tv.emby.embyatv/.ui.startup.StartupActivity;end"
+
 
                             }
                             Log.e("WallpaperService", "PROJECTIVY_LOG: API Success: ${status.imageUrl}")
